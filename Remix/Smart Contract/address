@@ -1,0 +1,15 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+contract MyContract{
+ 
+//ตัวแปรที่เก็บ address
+address public account;//เก็บ address ของคนที่มาใช้ smart contract
+ 
+constructor(){
+    account = msg.sender;
+}
+function changeAccount()public{
+    account = msg.sender;
+}
+ 
+}
