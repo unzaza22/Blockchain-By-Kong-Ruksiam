@@ -1,0 +1,24 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MyArray{
+
+    //array
+    uint[3] public numbers = [100,200,300];
+    string[3] public pets = ["Cat","Dog","Bee"];
+    string[] public partners; // dynamic array
+    address[2] public account = [0x10F988b8cA9989Ec8bd95286E19a76f411b60aE7,0x0C94526f1a691DF77A82f3ba5d4Ee4eB91889D2E];
+
+    function addPartners(string memory name) public{
+        partners.push(name); //เพิ่มสมาชิกใน array
+    }
+    
+    function getPartnerCount() public view returns(uint){
+        return partners.length;
+    }
+
+    function changeElement(uint index,string memory newValue) public{
+        partners[index] = newValue;
+    }
+
+}
