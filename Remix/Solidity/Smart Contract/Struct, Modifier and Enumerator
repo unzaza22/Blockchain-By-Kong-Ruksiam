@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+struct Manager{
+    string name;
+    uint age;
+    address account;
+}
+
+contract MyBank{
+    //นิยาม
+    enum State {Open,Close}
+
+    uint _balance = 1000; //ยอดเงินใน bank
+    Manager manager; // นิยามผู้จัดการ
+    State public bankState = State.Open; // เก็บสถานะเปิดให้บริการ
+
+    constructor(string memory _name,uint _age){
+        manager.name = _name;
+        manager.age = _age;
+        manager.account = msg.sender;
+    }
+
+    modifier isManager{
+        require(msg.sender == manager.account,"Unauthorized, You can't Manager.");
+        _;
+    }
+
+    function getBalance() public view isManager returns(uint){
+        require(bankState == State.Open,"Service Avaliable, Bank Closed");
+        return _balance;
+    }
+
+    function getManager() public view isManager returns(string memory){
+        return manager.name;
+    }
+}
