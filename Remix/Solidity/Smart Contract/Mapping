@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MyMapping {
+    string[] public coin;
+    mapping(string=>string) public coinMapping;
+    mapping(string=>uint) public population;
+    mapping(address=>uint) public balance;
+
+    constructor(){
+        //Array
+        coin.push("Bitcoin");
+        coin.push("Ethereum");
+        coin.push("Binance");
+
+        //Mapping
+        coinMapping["ETH"] = "Ethereum";
+        coinMapping["BTC"] = "Bitcoin";
+        coinMapping["BNB"] = "Binance";
+        
+        population["Bangkok"] = 10;
+        population["London"] = 5;
+    }
+
+    function deposite() payable public{
+        balance[msg.sender] = msg.value;
+    }
+}
